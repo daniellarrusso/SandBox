@@ -15,12 +15,20 @@ namespace BusinessLayer
 
         public int Id { get; set; }
         public string Name { get; set; }
+        
 
-        SqlCommand cmd = new SqlCommand();
 
-        public DataSet BL_Bind()
+        public DataTable BL_Bind()
         {
-            return da.NA_Bind();
+            try
+            {
+                DataAccess objdal = new DataAccess();
+                return objdal.Read();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public DataTable SearchGenre(string name)

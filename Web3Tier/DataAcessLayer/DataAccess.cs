@@ -12,15 +12,28 @@ namespace DataAcessLayer
     public class DataAccess
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString);
-        
-        public DataSet NA_Bind()
-        {
-            SqlDataAdapter sda = new SqlDataAdapter("dbo.GetGenre", con);
-            DataSet ds = new DataSet();
-            sda.Fill(ds);
-            return ds;
 
+        DataTable dt = new DataTable();
+        public DataTable Read()
+        {
+            
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.GetGenre", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                SqlDataReader rd = cmd.ExecuteReader();
+                dt.Load(rd);
+                
+                return dt;
+            }
+            catch
+            {
+                throw;
+            }
         }
+
         public void insertData (SqlCommand cmd)
         {
             con.Open();

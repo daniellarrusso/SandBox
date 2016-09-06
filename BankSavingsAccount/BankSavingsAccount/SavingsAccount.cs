@@ -6,33 +6,26 @@ using System.Threading.Tasks;
 
 namespace BankSavingsAccount
 {
-    public class SavingsAccount : BankAccount
+    public class SavingsAccount
     {
         private decimal _interestRate;
 
-        public SavingsAccount(decimal interest) : this(interest, 0) { }
-
-        public SavingsAccount(decimal interest, decimal initalBalance) : base(initalBalance)
+        private BankAccount _bankAccount;
+        
+        public SavingsAccount(decimal interest, BankAccount bankaccount)
         {
-            _interestRate = interest / 100;
+            this._bankAccount = bankaccount;
+            this._interestRate = interest / 100;
         }
 
-        public void AccumalateInterest()
+        public void Deposit(decimal depositAmount)
         {
-            _balance = _balance + (_balance * _interestRate);
+            _bankAccount.Deposit(depositAmount);
         }
 
         public string OutputSavingsAccount()
         {
-            return string.Format("{0} {1}", OutputBankAccount(), _interestRate * 100);
-        }
-
-        
-        new public void Withdraw(decimal withdrawalAmount)
-        {
-            base.Withdraw(1.50M);
-
-            base.Withdraw(withdrawalAmount);
+            return string.Format("{0} {1}", _bankAccount.OutputBankAccount(), _interestRate * 100);
         }
 
     }

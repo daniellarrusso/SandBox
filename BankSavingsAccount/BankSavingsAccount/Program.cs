@@ -16,12 +16,10 @@ namespace BankSavingsAccount
             Console.WriteLine(ba.OutputBankAccount());
 
 
-            SavingsAccount sa = new SavingsAccount(5.9M, 10000);
-            sa.Deposit(200M);
-            sa.Withdraw(5M);
+            SavingsAccount sa = new SavingsAccount(5.9M, sa);
+            sa.Deposit(200);
             Console.WriteLine(sa.OutputSavingsAccount());
-
-
+            
             Console.ReadLine();
         }
     }
