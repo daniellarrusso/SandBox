@@ -12,19 +12,19 @@ namespace Web3Tier
     {
         
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                SearchBind();
-            }
-        }
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
+        //    if (!IsPostBack)
+        //    {
+        //        SearchBind();
+        //    }
+        //}
 
-        public void SearchBind()
-        {
-            Business boo = Session["SearchGenre"] as Business;
-            searched.DataSource = boo.SearchGenre(boo.Name);
-            searched.DataBind();
-        }
+        //public void SearchBind()
+        //{
+        //    Business boo = Session["SearchGenre"] as Business;
+        //    searched.DataSource = boo.SearchGenre(boo.Name);
+        //    searched.DataBind();
+        //}
     }
 }

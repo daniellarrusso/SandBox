@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
-using BusinessLayer;
-using System.Data.SqlClient;
+﻿using BusinessLayer;
+using System;
 
 namespace Web3Tier
 {
@@ -33,7 +26,7 @@ namespace Web3Tier
             }
             catch
             {
-                txtSearchName.Text = "Error Occurred";
+                
             }
         }
 
@@ -44,18 +37,20 @@ namespace Web3Tier
             DropDownList1.DataBind();
         }
 
+        //protected void search_Click(object sender, EventArgs e)
+        //{
+
+        //    SearchBind(txtSearchName.Text);
+        //    //Session["SearchGenre"] = customer;
+        //    //Response.Redirect("PLReview.aspx");
+
+        //}
+
         protected void search_Click(object sender, EventArgs e)
         {
 
-            SearchBind(txtSearchName.Text);
-            //Session["SearchGenre"] = customer;
-            //Response.Redirect("PLReview.aspx");
-
-        }
-
-        public void SearchBind(string searchTerm)
-        {
-            GridView2.DataSource = bl.SearchGenre(searchTerm);
+            string employeeId = txtEmployeeId.Text;
+            GridView2.DataSource = bl.SearchGenre(Int32.Parse(employeeId.ToString()));
             GridView2.DataBind();
         }
     }

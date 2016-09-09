@@ -11,15 +11,14 @@ namespace DataAcessLayer
 {
     public class DataAccess
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString);
+        SqlConnection con = SqlConnections.GetSqlConnection();
 
-        DataTable dt = new DataTable();
+        
         public DataTable Read()
         {
+            DataTable dt = new DataTable();
             
-            if (ConnectionState.Closed == con.State)
-                con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.GetGenre", con);
+            SqlCommand cmd = new SqlCommand("dbo.GetEmployees", con);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {
@@ -38,21 +37,21 @@ namespace DataAcessLayer
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "GetGenre";
+           // cmd.CommandText = "GetGenre";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
         }
 
-        public DataTable SearchGenre(string name)
+        public DataTable SearchGenre(int employeeId)
         {
             DataTable table = new DataTable();
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+            using (con)
             {
-                using (SqlDataAdapter ad = new SqlDataAdapter("SearchGenre", conn))
+                using (SqlDataAdapter ad = new SqlDataAdapter("SearchEmployees", con))
                 {
                     ad.SelectCommand.CommandType = CommandType.StoredProcedure;
-                    SqlParameter prm = new SqlParameter("@name", SqlDbType.VarChar);
-                    prm.Value = name;
+                    SqlParameter prm = new SqlParameter("@EmployeeId", SqlDbType.VarChar);
+                    prm.Value = employeeId;
                     ad.SelectCommand.Parameters.Add(prm);
 
                     ad.Fill(table);

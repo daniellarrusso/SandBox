@@ -22,13 +22,13 @@ namespace Web3Tier {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtSearchName control.
+        /// txtEmployeeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchName;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployeeId;
         
         /// <summary>
         /// search control.

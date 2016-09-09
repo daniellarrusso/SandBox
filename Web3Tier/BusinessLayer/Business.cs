@@ -31,10 +31,10 @@ namespace BusinessLayer
             }
         }
 
-        public DataTable SearchGenre(string name)
+        public DataTable SearchGenre(int employeeid)
         {
             // your businees logic, calculations or validations may go here
-            return new DataAccess().SearchGenre(name);
+            return new DataAccess().SearchGenre(employeeid);
         }
     }
 }
